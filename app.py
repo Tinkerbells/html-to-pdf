@@ -14,6 +14,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
+    # Разница возраста микробиоты и пациента
+    data["age_diff"] = abs(
+        data["microbiota_age"] - data["personal_data"]["patient_age"]
+    )
     html_str = render_template("index.html", data=data)
     weasyprint.HTML(string=html_str).write_pdf("output.pdf", stylesheets=[css])
     print(f"pdf file is saved as output.pdf to {root_path}/output.pdf")

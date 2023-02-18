@@ -144,3 +144,36 @@ table td {
 .conclusion p {
   padding: 12px 24px;
 }
+
+.charts {
+  margin-top: 20px;
+  width: 500px;
+  background: #f7f7fa;
+  padding: 24px;
+}
+
+.bar-wrapper {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.bar {
+  margin-right: 16px;
+  padding: 4px;
+  height: 20px;
+  font-weight: bold;
+  text-align: center;
+  color: white;
+}
+
+.bar1 {
+  background-color: #568dc3;
+}
+
+.bar2 {
+  background-color: #e1772e;
+}
+.bar3 {
+  background-color: #96b356;
+}

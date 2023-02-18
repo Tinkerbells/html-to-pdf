@@ -176,6 +176,20 @@
     </p>
     <h2>Возраст микробиоты</h2>
     <p class="text">${data["age_text"]}</p>
+    <div class="charts">
+      <div class="bar-wrapper">
+         <div class="bar bar1" style="width: ${data["microbiota_age"]}%">${data["microbiota_age"]}</div>
+         <span> - Возраст микробиоты</span>
+      </div>
+      <div class="bar-wrapper">
+        <div class="bar bar2" style="width: ${data["personal_data"]["patient_age"]}%">${data["personal_data"]["patient_age"]}</div>
+         <span> - Возраст пациента</span>
+      </div>
+      <div class="bar-wrapper">
+        <div class="bar bar3" style="width: ${data["age_diff"]}%">${data["age_diff"]}</div>
+         <span> - Разница возрастов</span>
+      </div>
+    </div>
     <h2 class="break">Риски и заболевания</h2>
     <div class="risk">
       <h3>Основной тип: ${data["main_disease"]["name"]}</h3>

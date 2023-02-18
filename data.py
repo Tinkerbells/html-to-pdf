@@ -6,7 +6,7 @@ example_data = {
     },
     "personal_data": {
         "patient_name": "Иванов Иван Иванович",
-        "patient_age": "32",
+        "patient_age": 32,
         "patient_id": "3213123",
         "biosample_type": "Кал",
         "collection_date": "22.01.2023",
