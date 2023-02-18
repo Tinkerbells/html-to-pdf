@@ -1,3 +1,146 @@
-h1 {
-  color: #99b69e;
+@font-face {
+  font-family: Roboto;
+  src: url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,300;1,400&display=swap");
+}
+
+@page {
+  size: A4;
+  margin: 0.5cm;
+}
+
+body {
+  font-family: Roboto;
+}
+h2 {
+  margin-top: 30px;
+}
+
+.text {
+  border-left: 10px solid #e2f2d5;
+  background: #f9f9fc;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+/* Блок с персональными данными  */
+.personal-data {
+  max-width: 60%;
+  background: #f9f9fc;
+  padding: 0 24px 24px 24px;
+}
+.personal-data div {
+  display: flex;
+  height: 32px;
+  justify-content: space-between;
+}
+
+.personal-data p {
+  font-size: 16px;
+  width: 50%;
+}
+.personal-data p:nth-child(1) {
+  font-weight: bold;
+}
+
+/* Стили таблиц */
+table {
+  border-collapse: collapse;
+  border: 1px solid #1f2937;
+}
+
+table th {
+  padding: 10px;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  background: #1f2937;
+}
+
+table td {
+  padding: 10px;
+  font-size: 16px;
+  text-align: center;
+  background: #f7f7fa;
+  border: 1px solid #1f2937;
+}
+
+/* Таблица общих результатов */
+.norm-table th {
+  width: 225px;
+}
+
+.norm-table td {
+  font-style: italic;
+}
+
+/* Пробиток и патоген */
+.bacteria-table td {
+  width: 240px;
+  font-style: italic;
+}
+
+.table-desc {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Точка перед текстом */
+.list-item {
+  display: list-item;
+  margin-left: 12px;
+  font-size: 16px;
+}
+
+/* Диеты */
+.diet {
+  margin-top: 20px;
+  background: #f7f7fa;
+  padding: 12px 24px;
+}
+
+.diet-table td {
+  width: 180px;
+}
+/* Продукты и добавки */
+.additives-table {
+  padding: 0;
+}
+
+.additives-table th {
+  width: 225px;
+}
+
+/* Переход на новую страницу */
+.break {
+  break-before: page;
+}
+
+/* Риски */
+
+.risk {
+  background: #f7f7fa;
+  padding: 12px 24px;
+}
+
+/* Обводка и подчеркивание */
+.highlight {
+  background: #f6daaf;
+  padding: 4px;
+}
+
+.highlight-border {
+  border-left: 10px solid #f6daaf;
+  border-right: 4px solid #f6daaf;
+  border-top: 4px solid #f6daaf;
+  border-bottom: 4px solid #f6daaf;
+}
+
+/* Вывод */
+.conclusion {
+  background: #f7f7fa;
+  padding: 12px;
+}
+.conclusion p {
+  padding: 12px 24px;
 }

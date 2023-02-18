@@ -9,6 +9,187 @@
   </head>
   <body>
     <h1>Тест № ${data["report_header"]["top_header"]}</h1>
-    <!-- <h2>Отчет пациента №{{ bottom_header }}</h2> -->
+    <h3>Отчет пациента №${data["report_header"]["bottom_header"]}</h3>
+    <div class="personal-data">
+      <div>
+        <p>Пациент</p>
+        <p>${data["personal_data"]["patient_name"]}</p>
+      </div>
+      <div>
+        <p>Возраст</p>
+        <p>${data["personal_data"]["patient_age"]}</p>
+      </div>
+      <div>
+        <p>Индивидуальный номер</p>
+        <p>${data["personal_data"]["patient_id"]}</p>
+      </div>
+      <div>
+        <p>Биоматериал</p>
+        <p>${data["personal_data"]["biosample_type"]}</p>
+      </div>
+      <div>
+        <p>Дата взятия образца</p>
+        <p>${data["personal_data"]["collection_date"]}</p>
+      </div>
+      <div>
+        <p>Анализ</p>
+        <p>${data["personal_data"]["analysis_type"]}</p>
+      </div>
+      <div>
+        <p>Дата составления отчета</p>
+        <p>${data["personal_data"]["report_date"]}</p>
+      </div>
+    </div>
+    <h2>Общие результаты</h2>
+    <table class="norm-table">
+      <thead>
+        <tr>
+          <th>Бактерия</th>
+          <th>Количество, %</th>
+          <th>Границы нормы, %</th>
+        </tr>
+      </thead>
+      <tbody>
+        % for item in data["out_of_norm_table"]:
+        <tr>
+          <td>${item["name"]}</td>
+          <td>${item["amount"]}</td>
+          <td>${item["norm"]["lower"]} - ${item["norm"]["upper"]}</td>
+        </tr>
+        % endfor
+      </tbody>
+    </table>
+    <p class="text">${data["out_of_norm_text"]}</p>
+    <table class="bacteria-table">
+      <tbody>
+        <tr>
+          <th colspan="2">Содержание условно патогенных бактерий в %</th>
+        </tr>
+        % for item in data["pathogen"]["table"]:
+        <tr>
+          <td>${item["name"]}</td>
+          <td>${item["amount"]}%</td>
+        </tr>
+        % endfor
+      </tbody>
+    </table>
+    <p class="text table-desc">
+      <b>*${data["pathogen"]["title"]}:</b>
+      % for item in data["pathogen"]["table"]:
+      <span>- ${item["name"]} - ${item["desc"]}</span>
+      % endfor
+    </p>
+    <table class="bacteria-table break">
+      <tr>
+        <th colspan="2">Содержание условно положительных бактерий в %</th>
+      </tr>
+      % for item in data["probiotic"]["table"]:
+      <tr>
+        <td>${item["name"]}</td>
+        <td>${item["amount"]}%</td>
+      </tr>
+      % endfor
+    </table>
+    <p class="text table-desc">
+      <b>*${data["probiotic"]["title"]}:</b>
+      % for item in data["probiotic"]["table"]:
+      <span>- ${item["name"]} - ${item["desc"]}</span>
+      % endfor
+    </p>
+    <h2>Рекомендации по диетам</h2>
+    % for item in data["diets"]:
+    <div class="diet highlight-border">
+      <h3>${item["name"]}</h3>
+      <p class="list-item">${item["desc"]}</p>
+      <div class="diet-content">
+        <div class="nutrition">
+          <b>Суточная калорийность:</b>
+          <p>- Калории: ${item["nutrition"]["calories"]}%</p>
+          <p>- Белки: ${item["nutrition"]["proteins"]}%</p>
+          <p>- Жиры: ${item["nutrition"]["fats"]}%</p>
+          <p>- Углеводы: ${item["nutrition"]["carbohydrates"]}%</p>
+        </div>
+        <table class="diet-table">
+          <tr>
+            <th colspan="2">Список типичных продуктов</th>
+          </tr>
+          % for i in range(0, len(item["products"]), 2):
+          <tr>
+            <td>${item["products"][i]}</td>
+            <td>${item["products"][i+1]}</td>
+          </tr>
+          % endfor
+        </table>
+      </div>
+    </div>
+    % endfor
+    <h2>Добавки к пище</h2>
+    <h3>Список рекомендуемых продуктов</h3>
+    <table class="additives-table">
+      <tr>
+        <th>Продукт</th>
+        <th>Кол-во/Длительность приема</th>
+        <th>Бактерии</th>
+      </tr>
+      % for item in data["products_table"]:
+      <tr>
+        <td>${item["name"]}</td>
+        <td>
+          <p>${item["amount"]}</p>
+          <p>${item["duration"]}</p>
+        </td>
+        <td>
+          % for bacteria in item["bacterias"]:
+          <p>${bacteria}</p>
+          % endfor
+        </td>
+      </tr>
+      % endfor
+    </table>
+    <h3 class="break">Список рекомендуемых добавок</h3>
+    <table class="additives-table">
+      <tr>
+        <th>Продукт</th>
+        <th>Кол-во/Длительность приема</th>
+        <th>Бактерии</th>
+      </tr>
+      % for item in data["additives_table"]:
+      <tr>
+        <td>${item["name"]}</td>
+        <td>
+          <p>${item["amount"]}</p>
+          <p>${item["duration"]}</p>
+        </td>
+        <td>
+          % for bacteria in item["bacterias"]:
+          <p>${bacteria}</p>
+          % endfor
+        </td>
+      </tr>
+      % endfor
+    </table>
+    <p>
+      <b>*Списки сформированы с учетом указанных в анкете аллергенов:</b>
+      % for item in data["allergens_list"]:
+      <span>${item}</span>
+      % endfor
+    </p>
+    <h2>Возраст микробиоты</h2>
+    <p class="text">${data["age_text"]}</p>
+    <h2 class="break">Риски и заболевания</h2>
+    <div class="risk">
+      <h3>Основной тип: ${data["main_disease"]["name"]}</h3>
+      <p class="list-item">${data["main_disease"]["desc"]}</p>
+      <b>Риски сопряженных заболеваний:</b>
+      % for item in data["risk_list"]:
+      <p class="highlight">Заболевание ${item["name"]} - ${item["level"]}</p>
+      % endfor
+    </div>
+    <h2 class="break">Заключение</h2>
+    <div class="conclusion">
+      % for item in data["conclusion"]:
+      <p class="highlight-border">${item["text"]}</p>
+      % endfor
+    </div>
   </body>
 </html>
