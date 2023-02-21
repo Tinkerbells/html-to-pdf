@@ -42,36 +42,30 @@
     </div>
     <h2>Общие результаты</h2>
     <table class="norm-table">
-      <thead>
-        <tr>
-          <th>Бактерия</th>
-          <th>Количество, %</th>
-          <th>Границы нормы, %</th>
-        </tr>
-      </thead>
-      <tbody>
-        % for item in data["out_of_norm_table"]:
-        <tr>
-          <td>${item["name"]}</td>
-          <td>${item["amount"]}</td>
-          <td>${item["norm"]["lower"]} - ${item["norm"]["upper"]}</td>
-        </tr>
-        % endfor
-      </tbody>
+      <tr>
+        <th>Бактерия</th>
+        <th>Количество, %</th>
+        <th>Границы нормы, %</th>
+      </tr>
+      % for item in data["out_of_norm_table"]:
+      <tr>
+        <td>${item["name"]}</td>
+        <td>${item["amount"]}</td>
+        <td>${item["norm"]["lower"]} - ${item["norm"]["upper"]}</td>
+      </tr>
+      % endfor
     </table>
     <p class="text">${data["out_of_norm_text"]}</p>
     <table class="bacteria-table">
-      <tbody>
-        <tr>
-          <th colspan="2">Содержание условно патогенных бактерий в %</th>
-        </tr>
-        % for item in data["pathogen"]["table"]:
-        <tr>
-          <td>${item["name"]}</td>
-          <td>${item["amount"]}%</td>
-        </tr>
-        % endfor
-      </tbody>
+      <tr>
+        <th colspan="2">Содержание условно патогенных бактерий в %</th>
+      </tr>
+      % for item in data["pathogen"]["table"]:
+      <tr>
+        <td>${item["name"]}</td>
+        <td>${item["amount"]}%</td>
+      </tr>
+      % endfor
     </table>
     <p class="text table-desc">
       <b>*${data["pathogen"]["title"]}:</b>
@@ -104,12 +98,12 @@
       <div class="diet-content">
         <div class="nutrition">
           <b>Суточная калорийность:</b>
-          <p>- Калории: ${item["nutrition"]["calories"]}%</p>
+          <p>- Калории: ${item["nutrition"]["calories"]} ККал</p>
           <p>- Белки: ${item["nutrition"]["proteins"]}%</p>
           <p>- Жиры: ${item["nutrition"]["fats"]}%</p>
           <p>- Углеводы: ${item["nutrition"]["carbohydrates"]}%</p>
         </div>
-        <table class="diet-table">
+        <table class="diet-table two-col-table">
           <tr>
             <th colspan="2">Список типичных продуктов</th>
           </tr>
@@ -129,7 +123,7 @@
       <tr>
         <th>Продукт</th>
         <th>Кол-во/Длительность приема</th>
-        <th>Бактерии</th>
+        <th>Корректируемые бактерии</th>
       </tr>
       % for item in data["products_table"]:
       <tr>
@@ -151,7 +145,7 @@
       <tr>
         <th>Продукт</th>
         <th>Кол-во/Длительность приема</th>
-        <th>Бактерии</th>
+        <th>Корректируемые бактерии</th>
       </tr>
       % for item in data["additives_table"]:
       <tr>
@@ -177,18 +171,21 @@
     <h2>Возраст микробиоты</h2>
     <p class="text">${data["age_text"]}</p>
     <div class="charts">
-      <div class="bar-wrapper">
-         <div class="bar bar1" style="width: ${data["microbiota_age"]}%">${data["microbiota_age"]}</div>
-         <span> - Возраст микробиоты</span>
-      </div>
-      <div class="bar-wrapper">
-        <div class="bar bar2" style="width: ${data["personal_data"]["patient_age"]}%">${data["personal_data"]["patient_age"]}</div>
-         <span> - Возраст пациента</span>
-      </div>
-      <div class="bar-wrapper">
-        <div class="bar bar3" style="width: ${data["age_diff"]}%">${data["age_diff"]}</div>
-         <span> - Разница возрастов</span>
-      </div>
+       % if data["age_diff"] > 0: 
+       <div class="bar-wrapper">
+        <div class="bar bar1"></div>
+        <div class="bar bar2" style="width: ${data["bar_width"]}%"></div>
+       </div>
+       <p class="first-age">- ${data["first_age_text"]["title"]} ${data["first_age"]} ${data["first_age_text"]["text"]}</p>
+       <p class="second-age">- ${data["second_age_text"]["title"]} ${data["second_age"]} ${data["second_age_text"]["text"]}</p>
+       <p class="age-diff">- Разница ${data["age_diff"]} ${data["age_diff_text"]}</p>
+      % else:
+       <div class="bar-wrapper">
+        <div class="bar bar1 borderless"></div>
+       </div>
+       <p class="same-age">- ${data["first_age_text"]["title"]} ${data["first_age"]} ${data["first_age_text"]["text"]}</p>
+       <p class="same-age">- ${data["second_age_text"]["title"]} ${data["second_age"]} ${data["second_age_text"]["text"]}</p>
+      % endif
     </div>
     <h2 class="break">Риски и заболевания</h2>
     <div class="risk">

@@ -76,8 +76,11 @@ table td {
 
 /* Пробиток и патоген */
 .bacteria-table td {
-  width: 240px;
   font-style: italic;
+}
+
+.bacteria-table th {
+  width: 715px;
 }
 
 .table-desc {
@@ -98,9 +101,8 @@ table td {
   background: #f7f7fa;
   padding: 12px 24px;
 }
-
-.diet-table td {
-  width: 180px;
+.diet-table th {
+  width: 660px;
 }
 /* Продукты и добавки */
 .additives-table {
@@ -145,6 +147,7 @@ table td {
   padding: 12px 24px;
 }
 
+/* График возрастов */
 .charts {
   margin-top: 20px;
   width: 500px;
@@ -153,27 +156,46 @@ table td {
 }
 
 .bar-wrapper {
-  margin-top: 10px;
+  width: 90%;
   display: flex;
   align-items: center;
 }
 
 .bar {
-  margin-right: 16px;
-  padding: 4px;
-  height: 20px;
+  height: 22px;
   font-weight: bold;
   text-align: center;
-  color: white;
+  position: relative;
 }
 
 .bar1 {
-  background-color: #568dc3;
+  width: 100%;
+  background-color: #b0b3b8;
+  border-right: 18px solid #fb4934;
 }
 
 .bar2 {
-  background-color: #e1772e;
+  background-color: #fabd2f;
+  border-right: 18px solid #b8bb26;
 }
-.bar3 {
-  background-color: #96b356;
+
+.first-age {
+  padding-left: 6px;
+  border-left: 18px solid #fb4934;
+}
+.second-age {
+  padding-left: 6px;
+  border-left: 18px solid #b8bb26;
+}
+.age-diff {
+  padding-left: 6px;
+  border-left: 18px solid #fabd2f;
+}
+.same-age {
+  padding-left: 6px;
+  border-left: 18px solid #b0b3b8;
+}
+
+.borderless {
+  border-right: none;
 }
