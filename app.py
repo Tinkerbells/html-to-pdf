@@ -3,14 +3,15 @@ from datetime import datetime
 import weasyprint
 from mako.template import Template
 from mako.lookup import TemplateLookup
-from flask import Flask, render_template_string
+
+# from flask import Flask, render_template_string
 
 from data import example_data as data
 
 mylookup = TemplateLookup(directories=["templates"])
 root_path = os.path.dirname(__file__)
 css = os.path.join(root_path, "static/css/styles.css")
-app = Flask(__name__)
+# app = Flask(__name__)
 
 
 def get_age_text(age):
@@ -23,7 +24,7 @@ def get_age_text(age):
         return "лет"
 
 
-@app.route("/")
+# @app.route("/")
 def index():
     now = datetime.now()
     formatted_date = now.strftime("%d-%m-%Y-%H_%M")
@@ -61,7 +62,6 @@ def index():
         data["bar_width"] = 100 - microbiota_age / patient_age * 100
 
     html_str = render_template("index.html", data=data)
-    # weasyprint.HTML(string=html_str).write_pdf("output.pdf", stylesheets=[css])
     weasyprint.HTML(string=html_str).write_pdf(
         f"{formatted_date}.pdf", stylesheets=[css]
     )
@@ -70,7 +70,8 @@ def index():
         f"pdf file is saved as {formatted_date}.pdf to {root_path}/{formatted_date}.pdf"
     )
 
-    return render_template_string(str(html_str))
+    return ""
+    # return render_template_string(str(html_str))
 
 
 def render_template(template_name, **kwargs):
@@ -79,5 +80,5 @@ def render_template(template_name, **kwargs):
 
 
 if __name__ == "__main__":
-    # index()
-    app.run(debug=True)
+    index()
+    # app.run(debug=True)
