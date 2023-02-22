@@ -4,28 +4,38 @@ import weasyprint
 from mako.template import Template
 from mako.lookup import TemplateLookup
 
+# flask сервер
 # from flask import Flask, render_template_string
 
-from data import example_data as data
+# Импорт примерной даты из файла data.py
+# from data import example_data as data
 
 mylookup = TemplateLookup(directories=["templates"])
 root_path = os.path.dirname(__file__)
 css = os.path.join(root_path, "static/css/styles.css")
+
+# flask сервер
 # app = Flask(__name__)
 
 
-def get_age_text(age):
-    last = int(repr(age)[-1])
-    if last == 1:
-        return "год"
-    elif last in [2, 3, 4]:
-        return "года"
-    else:
-        return "лет"
-
-
+# flask сервер
 # @app.route("/")
-def index():
+
+
+def index(data):
+    def get_age_text(age):
+        last = int(repr(age)[-1])
+        if last == 1:
+            return "год"
+        elif last in [2, 3, 4]:
+            return "года"
+        else:
+            return "лет"
+
+    def render_template(template_name, **kwargs):
+        mytemplate = mylookup.get_template(template_name)
+        return mytemplate.render(**kwargs)
+
     now = datetime.now()
     formatted_date = now.strftime("%d-%m-%Y-%H_%M")
     # Разница возраста микробиоты и пациента
@@ -71,14 +81,14 @@ def index():
     )
 
     return ""
-    # return render_template_string(str(html_str))
 
 
-def render_template(template_name, **kwargs):
-    mytemplate = mylookup.get_template(template_name)
-    return mytemplate.render(**kwargs)
+# Комментарий для flask сервера
+# return render_template_string(str(html_str))
 
 
-if __name__ == "__main__":
-    index()
-    # app.run(debug=True)
+# if __name__ == "__main__":
+#     index()
+
+# Запуск flask сервера
+# app.run(debug=True)
