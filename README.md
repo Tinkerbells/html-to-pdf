@@ -14,7 +14,7 @@
 
 ### Вызываем функцию index
 
-````from app import index
-
-index(data)```
-````
+```
+from app import index
+index(data)
+```
